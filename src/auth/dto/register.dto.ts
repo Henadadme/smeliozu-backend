@@ -7,9 +7,8 @@ export class RegisterDto{
     memberName: string;
 
     @IsNotEmpty()
-    @IsNumber()
-    @MinLength(11)
-    phoneNumber: number;
+    @IsString()
+    phoneNumber: string;
 
     @IsNotEmpty()
     @IsString()
@@ -28,9 +27,8 @@ export class RegisterDto{
     kinAddress: string;
 
     @IsNotEmpty()
-    @IsNumber()
-    @MinLength(11)
-    kinPhone: number;
+    @IsString()
+    kinPhone: string;
 
     @IsNotEmpty()
     @IsEmail()
