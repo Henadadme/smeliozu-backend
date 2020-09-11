@@ -4,6 +4,7 @@ import * as bcrypt from 'bcrypt';
 import { RegisterDto } from "./dto/register.dto";
 import { ConflictException, InternalServerErrorException } from "@nestjs/common";
 import { LoginDto } from "./dto/login.dto";
+import { GetUserDto } from "../users/dto/get-user.dto";
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User>{
@@ -49,6 +50,8 @@ export class UserRepository extends Repository<User>{
             return null;
         }
     }
+
+    
 
     //method to hash password
     private async hashPassword(password: string, salt: string): Promise<string> {
