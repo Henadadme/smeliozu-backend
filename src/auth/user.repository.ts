@@ -3,6 +3,7 @@ import { User } from "./user.entity";
 import * as bcrypt from 'bcrypt';
 import { RegisterDto } from "./dto/register.dto";
 import { ConflictException, InternalServerErrorException } from "@nestjs/common";
+import { LoginDto } from "./dto/login.dto";
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User>{
@@ -35,6 +36,17 @@ export class UserRepository extends Repository<User>{
             }else{
                 throw new InternalServerErrorException();
             }
+        }
+    }
+
+    async login(loginDto: LoginDto): Promise<string>{
+        const {memberName, password} = loginDto;
+
+        const user = await this.findOne({memberName});
+        if (user && await user.validatePassword(password)) {
+            return user.memberName;
+        }else{
+            return null;
         }
     }
 
