@@ -1,5 +1,6 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import * as bcrypt from 'bcrypt';
+import { Notifs } from "src/notification/notification.entity";
 
 @Entity()
 export class User extends BaseEntity{
@@ -35,6 +36,9 @@ export class User extends BaseEntity{
 
     @Column()
     salt: string;
+
+    @OneToMany(type => Notifs, notifs => notifs.user, {eager:true})
+    notifs: Notifs[];
 
 
     //using custom method to validate username and password
