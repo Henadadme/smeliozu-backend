@@ -1,0 +1,10 @@
+server:
+  port: 3000
+
+db: 
+  type: 'postgres'
+  port: 5432
+  database: 'sm_eliozu'
+
+jwt:
+  expiresIn: 3600
