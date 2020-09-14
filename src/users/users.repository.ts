@@ -23,7 +23,21 @@ export class UsersRepository extends Repository<User>{
         }
 
         //executing the query
-        const users = await query.getMany();
-        return users;
+        var myUser, saidUser;
+        var arrUser: User[];
+        const users = await (await query.getMany()).forEach(function(value) {
+            delete value.password ;
+            delete value.salt;
+            saidUser = value;
+            
+        });
+        // const uuuu = await users.d
+        // const users = await query.getMany();
+        // myUser = users.find((user)=> {
+        //     delete user.password;
+        //     delete user.salt;
+        //     saidUser = user;
+        // });
+        return saidUser;
     }
 }
